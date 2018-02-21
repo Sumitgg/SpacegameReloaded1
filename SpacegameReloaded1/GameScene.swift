@@ -23,6 +23,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameTimer: Timer!
     
+    var possibleAliens = ["alien", "alien2", "alien3"]
+    
+    let alienCategory:UInt32 = 0x1 << 1
+    let photonTorpedoCategory:UInt32 = 0x1 << 0
+    
+    
     // Function to add the player and the Starfield particle emitter file to the GameScene
     override func didMove(to view: SKView) {
         
@@ -52,7 +58,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(scoreLabel)
         
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+        
+    
     }
+    
+    // Function to create moving enemies and aliens for this game at random positions
+    @objc func addAlien() {
+        possibleAliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: possibleAliens) as! [String]
+        
+        let alien = SKSpriteNode(imageNamed: possibleAliens[0])
+        
+        let randomAlienPosition = GKRandomDistribution(lowestValue: 0, highestValue: 414)
+        let position = CGFloat(randomAlienPosition.nextInt())
+        
+        alien.position = CGPoint(x: position, y: self.frame.size.height + alien.size.height)
+        
+        alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
+        alien.physicsBody?.isDynamic = true
+       
+        // Bit masks created to calculate when an alien is hit by a torpedo
+        alien.physicsBody?.categoryBitMask = alienCategory
+        alien.physicsBody?.contactTestBitMask = photonTorpedoCategory
+        alien.physicsBody?.collisionBitMask = 0
+        
+        self.addChild(alien)
+        
+        let animationDuration = 6
+        
+        var actionArray = [SKAction]()
+        
+        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -alien.size.height), duration: TimeInterval(animationDuration)))
+        actionArray.append(SKAction.removeFromParent())
+        
+        alien.run(SKAction.sequence(actionArray))
+        
+        
+    }
+    
+    
     
 
     
