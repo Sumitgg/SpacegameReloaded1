@@ -15,6 +15,11 @@
 		EC456CE7203DE0B00057471D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC456CE5203DE0B00057471D /* Main.storyboard */; };
 		EC456CE9203DE0B00057471D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC456CE8203DE0B00057471D /* Assets.xcassets */; };
 		EC456CEC203DE0B00057471D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC456CEA203DE0B00057471D /* LaunchScreen.storyboard */; };
+		EC456CF4203DE1360057471D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC456CF3203DE1360057471D /* explosion.mp3 */; };
+		EC456CF6203DE1480057471D /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EC456CF5203DE1480057471D /* torpedo.mp3 */; };
+		EC456CF8203DE1580057471D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC456CF7203DE1580057471D /* spark.png */; };
+		EC456CFA203DE1650057471D /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC456CF9203DE1640057471D /* Explosion.sks */; };
+		EC456CFC203DE1780057471D /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC456CFB203DE1780057471D /* Starfield.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		EC456CE8203DE0B00057471D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC456CEB203DE0B00057471D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC456CED203DE0B00057471D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC456CF3203DE1360057471D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		EC456CF5203DE1480057471D /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		EC456CF7203DE1580057471D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		EC456CF9203DE1640057471D /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		EC456CFB203DE1780057471D /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +72,15 @@
 			children = (
 				EC456CDB203DE0B00057471D /* AppDelegate.swift */,
 				EC456CDD203DE0B00057471D /* GameScene.sks */,
+				EC456CF9203DE1640057471D /* Explosion.sks */,
+				EC456CFB203DE1780057471D /* Starfield.sks */,
+				EC456CF7203DE1580057471D /* spark.png */,
 				EC456CDF203DE0B00057471D /* Actions.sks */,
 				EC456CE1203DE0B00057471D /* GameScene.swift */,
 				EC456CE3203DE0B00057471D /* GameViewController.swift */,
 				EC456CE5203DE0B00057471D /* Main.storyboard */,
+				EC456CF3203DE1360057471D /* explosion.mp3 */,
+				EC456CF5203DE1480057471D /* torpedo.mp3 */,
 				EC456CE8203DE0B00057471D /* Assets.xcassets */,
 				EC456CEA203DE0B00057471D /* LaunchScreen.storyboard */,
 				EC456CED203DE0B00057471D /* Info.plist */,
@@ -132,11 +147,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC456CF6203DE1480057471D /* torpedo.mp3 in Resources */,
+				EC456CF4203DE1360057471D /* explosion.mp3 in Resources */,
+				EC456CFC203DE1780057471D /* Starfield.sks in Resources */,
 				EC456CE7203DE0B00057471D /* Main.storyboard in Resources */,
 				EC456CDE203DE0B00057471D /* GameScene.sks in Resources */,
 				EC456CE9203DE0B00057471D /* Assets.xcassets in Resources */,
+				EC456CF8203DE1580057471D /* spark.png in Resources */,
 				EC456CEC203DE0B00057471D /* LaunchScreen.storyboard in Resources */,
 				EC456CE0203DE0B00057471D /* Actions.sks in Resources */,
+				EC456CFA203DE1650057471D /* Explosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
