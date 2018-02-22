@@ -64,6 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
     
+        // Function that helps add movement to the player of the game
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data:CMAccelerometerData?, error:Error?)in
             if let accelerometerData = data {
@@ -177,15 +178,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    // Function that helps add movement to the player i.e. to move the player to the left or right of the screen
     override func didSimulatePhysics() {
-        player.positon.x += xAcceleration * 50
         
-        
-    }
+        player.position.x += xAcceleration * 50
+     
+        if player.position.x < -20 {
+            player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
+        } else if player.position.x > self.size.width + 20 {
+            player.position = CGPoint(x: -20, y: player.position.y)
+            
+        }
+}
     
-    
-    
-    
+
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
