@@ -1,10 +1,14 @@
-//
-//  GameViewController.swift
-//  SpacegameReloaded1
-//
-//  Created by Sumit Ganju on 2018-02-21.
-//  Copyright © 2018 Centennial College. All rights reserved.
-//
+/*
+ * ViewController.swift
+ * Assignment 2 - Arcade Space Game
+ * Students:
+ *          Sumit Ganju                  300959971
+ *          Ling Bao                     300901785
+ *          Azeez adefarati Alaba        300971562
+ *
+ * Date: Feb 23, 2018
+ * Version: 0.1
+ */
 
 import UIKit
 import SpriteKit

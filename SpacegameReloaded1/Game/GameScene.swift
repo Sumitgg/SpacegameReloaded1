@@ -1,10 +1,14 @@
-//
-//  GameScene.swift
-//  SpacegameReloaded1
-//
-//  Created by Sumit Ganju on 2018-02-21.
-//  Copyright © 2018 Centennial College. All rights reserved.
-//
+/*
+ * ViewController.swift
+ * Assignment 2 - Arcade Space Game
+ * Students:
+ *          Sumit Ganju                  300959971
+ *          Ling Bao                     300901785
+ *          Azeez adefarati Alaba        300971562
+ *
+ * Date: Feb 23, 2018
+ * Version: 0.1
+ */
 
 import SpriteKit
 import GameplayKit
@@ -33,8 +37,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xAcceleration:CGFloat = 0
     
     
+    var livesArray:[SKSpriteNode]!
+    
     // Function to add the player and the Starfield particle emitter file to the GameScene
     override func didMove(to view: SKView) {
+        
+        addLives()
         
         starfield = SKEmitterNode(fileNamed: "Starfield")
         starfield.position = CGPoint(x: 0, y: 1472)
@@ -54,15 +62,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
      // Adding the Score label to the GameScene
         scoreLabel = SKLabelNode(text: "Score: 0")
-        scoreLabel.position = CGPoint(x: 100, y: self.frame.size.height / 2 - 80)
+        scoreLabel.position = CGPoint(x: 80, y: self.frame.size.height / 2 - 80)
         scoreLabel.fontName = "AmericanTypewriter-Bold"
-        scoreLabel.fontSize = 60
+        scoreLabel.fontSize = 52
         scoreLabel.fontColor = UIColor.white
         score = 0
         
         self.addChild(scoreLabel)
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+        var timeInterval = 0.75
+        
+        if UserDefaults.standard.bool(forKey: "hard") {
+            timeInterval = 0.3
+        }
+        
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
     
         // Function that helps add movement to the player of the game
         motionManager.accelerometerUpdateInterval = 0.2
@@ -74,6 +89,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
   
+    }
+    // Add player lives to the GameScene
+    func addLives() {
+        livesArray = [SKSpriteNode]()
+        
+        for live in 1 ... 3 {
+            let liveNode = SKSpriteNode(imageNamed: "shuttle")
+            liveNode.position = CGPoint(x: self.frame.size.width - CGFloat(4 - live) * liveNode.size.width, y: self.frame.size.height - 60)
+         self.addChild(liveNode)
+          livesArray.append(liveNode)
+        }
+        
     }
     
     // Function to create moving enemies and aliens for this game at random positions
@@ -102,6 +129,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var actionArray = [SKAction]()
         
         actionArray.append(SKAction.move(to: CGPoint(x: position, y: -alien.size.height), duration: TimeInterval(animationDuration)))
+        
+        actionArray.append(SKAction.run {
+            
+            if self.livesArray.count > 0 {
+                let liveNode = self.livesArray.first
+                liveNode!.removeFromParent()
+                self.livesArray.removeFirst()
+                }
+            
+            })
+        
         actionArray.append(SKAction.removeFromParent())
         
         alien.run(SKAction.sequence(actionArray))
